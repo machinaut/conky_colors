@@ -33,7 +33,11 @@ int initialize_finddir()
 
 	info.datadir[FINDDIR_CUSTOM][0] = '\0';
 	snprintf(info.datadir[FINDDIR_LOCAL], FINDDIR_CHAR_LEN, "%s/.conkycolors", path);
-	snprintf(info.datadir[FINDDIR_SYSTEM], FINDDIR_CHAR_LEN, "/usr/share/conkycolors");
+#ifdef AJRAY_DOTFILES /* This is for my local dotfiles installs */
+	snprintf(info.datadir[FINDDIR_SYSTEM], FINDDIR_CHAR_LEN, "conkycolors");
+#else  /* This is for normal installs */
+	snprintf(info.datadir[FINDDIR_SYSTEM], FINDDIR_CHAR_LEN, AJRAY_DOTFILES "/conkycolors");
+#endif
 	snprintf(info.tempdir, FINDDIR_CHAR_LEN, "/tmp/conkycolors");
 
 	if(systemf("if ! test -d %s; then mkdir -p %s; fi", info.tempdir, info.tempdir) != 0)
