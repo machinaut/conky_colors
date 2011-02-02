@@ -28,15 +28,15 @@ install: conky-colors conkyrc
 
 install-local: conky-colors-local conkyrc-local
 	mkdir -p $(DOTFILES)
-	mkdir -p $(DOTFILES)/fonts/TTF/conky
-	mkdir -p $(DOTFILES)/fonts/OTF/conky
+	mkdir -p $(HOME)/.fonts/TTF/conky
+	mkdir -p $(HOME)/.fonts/OTF/conky
 	mkdir -p $(DOTFILES)/bin
 	mkdir -p $(HOME)/bin
 	cp -v conky-colors $(DOTFILES)/bin
 	ln -s $(DOTFILES)/bin/conky-colors $(HOME)/bin
 	cp -v -r conkycolors $(DOTFILES)
-	cp -v fonts/conkycolors/*.ttf fonts/conkycolors/*.TTF $(DOTFILES)/fonts/TTF/conky
-	cp -v fonts/conkycolors/*.otf $(DOTFILES)/fonts/OTF/conky
+	cp -v fonts/conkycolors/*.ttf fonts/conkycolors/*.TTF $(HOME)/.fonts/TTF/conky
+	cp -v fonts/conkycolors/*.otf $(HOME)/.fonts/OTF/conky
 	#ln -s $(DOTFILES)/fonts $(HOME)/.fonts # this should already be there
 	chmod +x $(DOTFILES)/conkycolors/scripts/*
 	chmod +x $(DOTFILES)/conkycolors/bin/*
@@ -63,10 +63,10 @@ uninstall-local:
 	rm -rf $(DOTFILES)/conkycolors
 	rm $(DOTFILES)/bin/conky-colors
 	for file in $$(find $(CWD)/fonts/conkycolors -iname *.otf -print0); do \
-	  rm $(DOTFILES)/fonts/OTF/conky/$$(basename $$file); \
+	  rm $(HOME)/.fonts/OTF/conky/$$(basename $$file); \
 	done
 	for file in $$(find $(CWD)/fonts/conkycolors -iname *.ttf -print0); do \
-	  rm $(DOTFILES)/fonts/TTF/conky/$$(basename $$file); \
+	  rm $(HOME)/.fonts/TTF/conky/$$(basename $$file); \
 	done
 
 .PHONY: all local clean clean-local install install-local uninstall uninstall-local
