@@ -31,10 +31,13 @@ install-local: conky-colors-local conkyrc-local
 	mkdir -p $(DOTFILES)/fonts/TTF/conky
 	mkdir -p $(DOTFILES)/fonts/OTF/conky
 	mkdir -p $(DOTFILES)/bin
+	mkdir -p $(HOME)/bin
 	cp -v conky-colors $(DOTFILES)/bin
+	ln -s $(DOTFILES)/bin/conky-colors $(HOME)/bin
 	cp -v -r conkycolors $(DOTFILES)
 	cp -v fonts/conkycolors/*.ttf fonts/conkycolors/*.TTF $(DOTFILES)/fonts/TTF/conky
 	cp -v fonts/conkycolors/*.otf $(DOTFILES)/fonts/OTF/conky
+	#ln -s $(DOTFILES)/fonts $(HOME)/.fonts # this should already be there
 	chmod +x $(DOTFILES)/conkycolors/scripts/*
 	chmod +x $(DOTFILES)/conkycolors/bin/*
 
